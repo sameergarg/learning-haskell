@@ -47,13 +47,27 @@ nyOffice name = nameText ++ ": PO Box 789 - New York, NY, 10013"
 renoOffice name = nameText ++ " - PO Box 456 - Reno, NV 89523"
   where nameText = snd name
 
+washingtonOffice name = nameText ++ " Esq " ++ "Washington, DC"
+  where nameText = (fst name) ++ " " ++ (snd name)
+
 getLocationFn location = case location of
   "ny"   -> nyOffice
   "sf"   -> sfOffice
   "reno" -> renoOffice
+  "dc" -> washingtonOffice
   _      -> (\name -> (fst name) ++ " " ++ (snd name))
 
 addressLetter name location = (\locationFn name -> locationFn name) (getLocationFn location) name
 
 -- addressLetter ("Bob","Smith") "PO Box 1234 - San Francisco, CA, 94111"
 
+
+compareLastNamesUsingCompare name1 name2 = (\fName1 fName2 lName1 lName2 -> if compare lName1 lName2 == EQ
+                                                                             then compare fName1 fName2
+                                                                             else compare lName1 lName2 )
+                                                                             (fst name1) (fst name2) (snd name1) (snd name2)
+
+compareLastNamesUsingCompare2 name1 name2 = (\compareLastName compareFirstName -> if compareLastName == EQ
+                                                                             then compareFirstName
+                                                                             else compareLastName )
+                                                                             (compare (snd name1) (snd name2)) (compare (fst name1) (fst name2))
