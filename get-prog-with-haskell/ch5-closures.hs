@@ -30,10 +30,7 @@ exampleBuilder = getRequestURL "http://example.com" "1337hAsk3ll" "books"
 subtract2 = flip (-) 2
 
 -- Q 5.1
-
-ifEven fn x = if even x then fn x else x
-
-ifEvenInc = ifEven (\x -> x+1)
+ifEvenInc = ifEvenFn inc
 
 binaryPartialApplication binFn = (\x y -> binFn x y)
 
