@@ -1,0 +1,1 @@
+https://github.com/Rhywun/get-programming-in-haskell/blob/master/Unit01/Lesson06.hs
